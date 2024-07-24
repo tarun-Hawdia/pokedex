@@ -1,0 +1,22 @@
+/* styles.css */
+:root {
+  --card_gray: #f0f0f0; /* Replace with your actual color */
+}
+
+.header {
+  background-color: var(--card_gray);
+  color: white;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-content {
+  text-align: center;
+}
+
+.logo {
+  max-width: 100%; /* Ensure the logo scales properly */
+  height: auto;
+}

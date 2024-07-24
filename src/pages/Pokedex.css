@@ -1,0 +1,145 @@
+
+/* src/pages/Pokedex.css */
+
+.pokedex {
+  padding: 20px;
+  font-family: 'sans-serif','arial';
+}
+
+.pokedex h1 {
+  text-align: center;
+  color: #419aee;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Set to 5 columns */
+  gap: 20px;
+}
+
+.grid-item {
+  border: 2px solid #2a75bb;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white; /* Set the background color of the whole card to white */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; /* Add cursor pointer to indicate clickable item */
+  text-align: center;
+  padding: 10px;
+}
+
+.grid-item img {
+  width: 100%; /* Adjust to fill the width of the card */
+  height: auto;
+  display: block;
+  margin-bottom: 10px; /* Space between image and details */
+}
+
+.info {
+  padding: 10px;
+  background-color: #ffffff; /* Set the background color for the info section */
+}
+
+.info strong {
+  display: block;
+  font-size: 18px;
+  color: #2a75bb;
+  margin-bottom: 5px;
+}
+
+.info p {
+  margin: 0;
+  color: #333;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #2a75bb; /* Button color */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease;
+  margin: 0 10px;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #1c5a8c; /* Darker shade for hover effect */
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.modal-info {
+  margin-top: 15px;
+
+}
+
+.modal-info strong {
+  font-size: 24px;
+  color: #2a75bb;
+  text-decoration: none; 
+}
+
+.modal-info p {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none; 
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #2a75bb;
+}
+
+.close:hover {
+  color: #1c5a8c;
+}

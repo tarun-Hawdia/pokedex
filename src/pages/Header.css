@@ -1,0 +1,27 @@
+/* src/pages/Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #9bec4e; /* Background color inspired by Pikachu */
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.logout-button {
+  background-color: #4196e6; /* Button color inspired by Squirtle */
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1c5a8c; /* Darker shade for hover effect */
+}
