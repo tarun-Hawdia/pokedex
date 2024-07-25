@@ -6,6 +6,7 @@ import Pokedex from "./pages/Pokedex";
 import PokemonDetails from "./pages/PokemonDetail";
 import Header from "./pages/Header";
 import MainHeader from "./pages/MainHeader/Mainheader";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const location = useLocation();
@@ -19,8 +20,22 @@ function App() {
       {showHeader && <Header />}
       <Routes>
         <Route path="/" element={<AuthForm />} />
-        <Route path="/pokedex" element={<Pokedex />} />
-        <Route path="/pokemon/:id" element={<PokemonDetails />} />
+        <Route
+          path="/pokedex/:username"
+          element={
+            <ProtectedRoute>
+              <Pokedex />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/pokemon/:name"
+          element={
+            <ProtectedRoute>
+              <PokemonDetails />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

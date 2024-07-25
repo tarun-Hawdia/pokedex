@@ -1,22 +1,24 @@
-// src/pages/Pokedex.js
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Pokedex.css";
 
 function Pokedex() {
   const [pokemon, setPokemon] = useState([]);
   const [details, setDetails] = useState([]);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(Number(process.env.OFFSET));
   const [count, setCount] = useState(0);
 
+  // Get limit from environment variables
+  const limit = Number(process.env.LIMIT);
+
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
       .then((response) => response.json())
       .then((data) => {
         setCount(data.count);
         setPokemon(data.results);
       });
-  }, [offset]);
+  }, [offset, limit]);
 
   useEffect(() => {
     if (pokemon.length > 0) {
@@ -37,22 +39,23 @@ function Pokedex() {
   }, [pokemon]);
 
   const handleNext = () => {
-    if (offset + 25 < count) {
-      setOffset(offset + 25);
+    if (offset + limit < count) {
+      setOffset(offset + limit);
     }
   };
 
   const handlePrevious = () => {
-    if (offset - 25 >= 0) {
-      setOffset(offset - 25);
+    if (offset - limit >= 0) {
+      setOffset(offset - limit);
     }
   };
 
   return (
     <div className="pokedex">
+      <h1>Welcome to Pokedex</h1>
       <div className="grid">
         {details.map((p) => (
-          <Link to={`/pokemon/${p.id}`} key={p.id} className="grid-item-link">
+          <Link to={`/pokemon/${p.name}`} key={p.id} className="grid-item-link">
             <div className="grid-item">
               <img src={p.image} alt={p.name} />
               <div className="info">
@@ -68,7 +71,7 @@ function Pokedex() {
         <button onClick={handlePrevious} disabled={offset === 0}>
           Previous
         </button>
-        <button onClick={handleNext} disabled={offset + 25 >= count}>
+        <button onClick={handleNext} disabled={offset + limit >= count}>
           Next
         </button>
       </div>

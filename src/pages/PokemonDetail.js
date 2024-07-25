@@ -1,42 +1,30 @@
 // src/pages/PokemonDetail.js
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./PokemonDetail.css";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function PokemonDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate(); // Initialize useNavigate
+function PokemonDetails() {
+  const { name } = useParams();
   const [pokemon, setPokemon] = useState(null);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then((response) => response.json())
-      .then((data) => {
-        setPokemon(data);
-      });
-  }, [id]);
+      .then((data) => setPokemon(data));
+  }, [name]);
 
-  if (!pokemon) return <div>Loading...</div>;
+  if (!pokemon) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="pokemon-detail">
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+    <div>
       <h1>{pokemon.name}</h1>
-      <p>
-        <strong>Weight:</strong> {pokemon.weight}
-      </p>
-      <p>
-        <strong>Height:</strong> {pokemon.height}
-      </p>
-      <p>
-        <strong>Types:</strong>{" "}
-        {pokemon.types.map((type) => type.type.name).join(", ")}
-      </p>
-      <button className="back-button" onClick={() => navigate(-1)}>
-        Back to List
-      </button>
+      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      <p>Weight: {pokemon.weight}</p>
+      <p>Height: {pokemon.height}</p>
+      <p>Base Experience: {pokemon.base_experience}</p>
     </div>
   );
 }
 
-export default PokemonDetail;
+export default PokemonDetails;
